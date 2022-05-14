@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LessonEntity" representedClassName="LessonEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="weekdayNr" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StudentEntity" inverseName="lesson" inverseEntity="StudentEntity"/>
+    </entity>
+    <entity name="PieceEntity" representedClassName="PieceEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="composer" optional="YES" attributeType="String"/>
+        <attribute name="difficulty" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="instrument" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="playList" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PlayEntity" inverseName="piece" inverseEntity="PlayEntity"/>
+    </entity>
+    <entity name="PlayEntity" representedClassName="PlayEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="actualDifficulty" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="expectedDifficulty" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="piece" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PieceEntity" inverseName="playList" inverseEntity="PieceEntity"/>
+        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StudentEntity" inverseName="playList" inverseEntity="StudentEntity"/>
+    </entity>
+    <entity name="StudentEntity" representedClassName="StudentEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="birthDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="instrument" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="street" optional="YES" attributeType="String"/>
+        <attribute name="zipCode" optional="YES" attributeType="String"/>
+        <relationship name="lesson" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="LessonEntity" inverseName="student" inverseEntity="LessonEntity"/>
+        <relationship name="playList" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PlayEntity" inverseName="student" inverseEntity="PlayEntity"/>
+    </entity>
+    <elements>
+        <element name="LessonEntity" positionX="-69.96875" positionY="405.32421875" width="128" height="103"/>
+        <element name="PieceEntity" positionX="-791.1640625" positionY="390" width="128" height="118"/>
+        <element name="PlayEntity" positionX="-566.30859375" positionY="390.140625" width="128" height="133"/>
+        <element name="StudentEntity" positionX="-311.19140625" positionY="315.3046875" width="128" height="194"/>
+    </elements>
+</model>
